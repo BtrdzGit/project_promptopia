@@ -1,12 +1,10 @@
 'use client'
 
 import Form from '@components/Form'
-import {useEffect, useState} from 'react'
-import {useSession} from 'next-auth/react'
+import {Suspense, useEffect, useState} from 'react'
 import {useRouter, useSearchParams} from "next/navigation";
 
 const UpdatePromptPage = () => {
-    const {data: session} = useSession()
     const router = useRouter()
     const searchParams = useSearchParams()
     const promptId = searchParams.get('id')
@@ -63,4 +61,6 @@ const UpdatePromptPage = () => {
     )
 }
 
-export default UpdatePromptPage
+const EditPromptPage = () => <Suspense><UpdatePromptPage/></Suspense>
+
+export default EditPromptPage
